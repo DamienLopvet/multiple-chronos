@@ -1,0 +1,329 @@
+body,
+input,
+button {
+    font-size: 15px;
+}
+
+body{
+    height: 100vh;
+    background-color: #f8f8f8;
+}
+
+button {
+    position: relative;
+    cursor: pointer;
+    margin: 0 5px;
+    min-width: 10px;
+    border-radius: 10px;
+    padding: 5px;
+}
+section{
+    position: relative;
+    
+}
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+}
+h1{
+    padding-bottom: 10px;
+    margin-left: 20px;
+}
+header{
+    margin: auto;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    padding-top: 30px;
+    
+
+}
+header div{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+
+}
+.color-palette{
+    position: fixed;
+    bottom: 0;
+    right: 8px;
+    padding:10px;
+    font-size: 20px;
+    border-radius: 10px;
+    border:3px solid white;
+    box-shadow: 5px 5px 10px -10px #000000a6;
+    margin:10px;
+    opacity: 0.5;
+
+        
+}
+.color-palette:hover{
+opacity: 1;
+}
+.color-picker{
+  border:3px solid black;
+  border-radius: 8px;
+  max-width:60%
+}
+.add-counter-button {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-15px);
+    padding: 10px;
+    font-size: large;
+    border:3px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px -10px #000000a6;
+    background-color: wheat;
+
+}
+.add-counter-button:hover {
+opacity: 0.9;
+}
+.modal {
+    position: fixed;
+    background-color:#0000015c;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+}
+.modal .create-chrono  {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    transform: translatey(40vh);
+    height: 20%;
+    align-items: center;
+    background-color: white;
+    width: 30%;
+    margin: auto;
+    padding: 0 20px;
+    border-radius: 10px;
+    border:5px solid wheat
+}
+.create-color{
+    display: flex;
+    flex-flow: column-reverse;
+    justify-content: center;
+    transform: translatey(40vh);
+    height: 20%;
+    align-items: center;
+    background-color: white;
+    width: 30%;
+    margin: auto;
+    padding: 0 20px;
+    border-radius: 10px;
+    border:5px solid wheat
+}
+.modal{
+    z-index: 2;
+}
+.modal-submit{
+    padding:10px;
+    border:3px solid white;
+    border-radius: 10px;   
+    background-color: wheat;
+    margin:5px;
+    box-shadow: 5px 5px 10px -10px #000000a6;
+    cursor: pointer;
+
+}
+.modal-submit:hover{
+    opacity: 0.9;
+    
+}
+.modal .create-chrono input, .color-picker{
+    height: 40px;
+    border-radius: 10px;
+    border: 3px solid white;
+    box-shadow: 5px 5px 10px -10px #000000a6;
+    background-color: wheat;
+    font-size: 20px;
+    text-align:center ;
+    width: 80%;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.chronos-container{
+    margin-top: 60px;
+    padding: 40px 0;
+    border-left:2px solid beige;
+    border-right:2px solid beige;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+
+
+}
+.chrono-card {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 80%;
+    max-width: 20%;
+    min-width:200px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 5px 5px 10px -10px #000000a6;
+    border:5px solid white
+
+}
+
+.chrono-counter {
+    position: relative;
+    margin: auto;
+    user-select: none;
+    min-height: 150px;  
+    display:flex ;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 3rem;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    }
+
+.chrono-title {
+    font-size: 1.1rem; 
+    width: 100%;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    background-color: wheat;
+    z-index: 1;
+    
+
+}
+
+
+.chrono-nav {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    justify-content:space-around;
+    align-items: center;
+    width: 100%;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    background-color: wheat;
+
+}
+.chrono-backward, .chrono-forward{
+    padding:20px 5px;
+}
+.startStop{
+    padding:20px 0
+}
+
+
+.clock-time {
+    margin:0  20px;
+    font-size: 65px;
+ opacity: 0.3;   
+}
+.clock {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    transform: scale(3)translateX(-10px);
+    border-radius: 50%;
+    border: 0.1px solid;
+    width: 50px;
+    height: 50px;
+    opacity: 0.05;
+    animation-name: fade-in;
+    animation-duration: 800ms;
+}
+
+.clock:after {
+    position: absolute;
+    width: 0px;
+    height: 20px;
+    display: block;
+    border-bottom-left-radius:0.5px;
+    border-bottom-right-radius:0.5px;
+    border-left: 1px solid #000;
+    content: "";
+    left: 26px;
+    top: 5px;
+    animation-duration: 60s;
+
+}
+
+.clock:before {
+    position: absolute;
+    border-bottom-left-radius:0.5px;
+    border-bottom-right-radius:0.5px;
+
+    width: 0px;
+    height: 15px;
+    display: block;
+    border-left: 1px solid #000;
+    content: "";
+    left: 26px;
+    top: 10px;
+    animation-duration: 3600s;
+}
+
+.clock:before,
+.clock:after {
+    transform-origin: bottom;
+    animation-name: dial;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+
+
+@keyframes dial {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.color{
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+}
+@media screen and (max-width:900px) {
+    .modal form {
+        width: 60%!important;
+    } 
+    
+}
+@media screen and (max-width:700px) {
+    .modal form {
+        width: 70% !important;
+    } 
+
+    .clock-time{
+        font-size: 45px;
+    }
+}
+@media screen and (max-width:500px) {
+    .modal form {
+        width: 80% !important;
+    } 
+.modal input{
+    width: 100% !important; 
+}
+.clock-time{
+    font-size: 35px;
+}
+}
