@@ -114,14 +114,11 @@
                     chrono.chronoState = Date.now() - chrono.starTime;
                     this.updateLocalStorage(chrono)
 
-                }, 1000);
-                // chrono.pushToLocalStorage = setInterval(()=>{
-                //     this.updateLocalStorage(chrono)
-                // },10000)
+                }, 60000);
+                
             },
             stop(chrono) {
                 clearInterval(chrono.counterInterval);
-                // clearInterval(chrono.pushToLocalStorage)
                 chrono.start = false;
                 this.updateLocalStorage(chrono)
             },
@@ -134,7 +131,7 @@
 
             },
             updateLocalStorage(chrono) {
-                /***CREATE A NEWITEM TO INSERT***/
+                /***CREATE A NEW ITEM TO INSERT***/
                 let chronoToStore = { ...chrono };
 
                 /***RETREIVE CHRONO MATCHING POSITION IN ARRAY AND REPLACE***/
