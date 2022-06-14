@@ -110,9 +110,9 @@ opacity: 0.9;
     border-radius: 10px;
     border:5px solid wheat
 }
-.create-color{
+.create-color, .edit-chrono-title{
     display: flex;
-    flex-flow: column-reverse;
+    flex-flow: column;
     justify-content: center;
     transform: translatey(40vh);
     height: 20%;
@@ -141,7 +141,7 @@ opacity: 0.9;
     opacity: 0.9;
     
 }
-.modal .create-chrono input, .color-picker{
+.modal .create-chrono input, .color-picker, .edit-chrono-title input{
     height: 40px;
     border-radius: 10px;
     border: 3px solid white;
@@ -203,11 +203,21 @@ opacity: 0.9;
     border-top-right-radius:5px;
     background-color: wheat;
     z-index: 1;
-    
+    position: relative;
 
 }
+.chrono-title-edit{
+position: absolute;
+top: 0;
+right: 0;
+font-size: 0.5rem;
+margin:3px;
+opacity: 0.5;
+}
 
-
+.chrono-title-edit:hover{
+    opacity: 1;
+}
 .chrono-nav {
     position: relative;
     display: flex;
@@ -219,7 +229,14 @@ opacity: 0.9;
     border-bottom-right-radius:5px;
     background-color: wheat;
 
+
 }
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
 .chrono-backward, .chrono-forward{
     padding:20px 5px;
 }
