@@ -19,6 +19,7 @@
                     <!-- counter -->
                     <div class="chrono-counter">
                         <span v-if="chrono.start" class="clock"></span>
+                        <span v-if="!chrono.start" class="mask" ></span>
                         <span v-if="!chrono.chronoState">00:00</span>
                         <span v-else>{{
                             new Date(chrono.chronoState).toISOString().slice(11, -8)
@@ -28,7 +29,7 @@
                     <div class="chrono-nav" :style="{'background-color': dynamiColor}">
                         <!-- backward -->
                         <span v-if="chrono.starTime>0" class="chrono-backward cursor-pointer"
-                            @mousedown="backward(chrono)" @mouseup="stopBackwarding()"><i
+                            @mousedown="backward(chrono)" @mouseup="stopBackwarding()" @touchstart="backward(chrono)" @touchend="stopBackwarding()"><i
                                 class="fa-solid fa-backward"></i></span>
                         <!-- reset -->
                         <span v-if="chrono.starTime>0" @click="reset(chrono)"><i
@@ -44,7 +45,7 @@
                                 class="fa-solid fa-trash-can cursor-pointer"></i></span>
                         <!-- forward -->
                         <span v-if="chrono.starTime>0" class="chrono-forward cursor-pointer"
-                            @mousedown="forward(chrono)" @mouseup="stopForwarding()"><i
+                            @mousedown.left="forward(chrono)" @mouseup.left="stopForwarding()" @touchstart="forward(chrono)" @touchend="stopForwarding()"><i
                                 class="fa-solid fa-forward"></i></span>
 
                     </div>
@@ -141,7 +142,7 @@
                     chrono.chronoState = Date.now() - chrono.starTime;
                     this.updateLocalStorage(chrono)
 
-                }, 60000);
+                }, 10000);
 
             },
             stop(chrono) {
