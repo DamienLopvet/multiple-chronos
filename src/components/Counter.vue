@@ -17,7 +17,7 @@
                             @click="chrono.showEditTitle = true"></i>
                     </div>
                     <!-- counter -->
-                    <div class="chrono-counter">
+                    <div class="chrono-counter" @click="!chrono.start? start(chrono) : stop(chrono)">
                         <span v-if="chrono.start" class="clock"></span>
                         <span v-if="!chrono.start" class="mask" ></span>
                         <span v-if="!chrono.chronoState">00:00</span>
