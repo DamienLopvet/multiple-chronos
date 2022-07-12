@@ -1,4 +1,5 @@
-<template>
+<template color dark theme body vuejs
+>
 <Counter />
 
 
