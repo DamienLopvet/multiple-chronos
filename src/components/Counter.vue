@@ -7,11 +7,15 @@
             </div>
         </header>
         <span class="add-counter-button" @click="this.showCreateChrono=true"
-            :style="{'background-color': color}"><i class="fa-solid fa-plus"></i></span>
-        <div class="chronos-container" :style="{'border-color': color}">
+            ><i class="fa-solid fa-plus"></i></span>
+            <div class="manage-chronos">
+                <span class="manage-chronos-icon" title="delete all" @click="deleteAllChronos" ><i class="fa-solid fa-trash"></i></span>
+                <span class="manage-chronos-icon" title="reset all" @click="resetAllChronos"><i class="fa-solid fa-rotate-right"></i></span>
+            </div>
+        <div class="chronos-container" >
             <div class="chrono-card" v-for="(chrono, index) in arrayOfChronos" :key="index">
                 <!-- Title -->
-                <div class="chrono-title" :style="{'background-color': color}"
+                <div class="chrono-title" 
                     @click="chrono.showEditTitle = true">
                     <p type="text">{{chrono.title}}</p>
                     <i class="fa-solid fa-pen chrono-title-edit cursor-pointer"
@@ -19,14 +23,14 @@
                 </div>
                 <!-- counter -->
                 <div class="chrono-counter" @click="!chrono.start? start(chrono) : stop(chrono)" :class="{dark:darkTheme}">
-                    <span v-if="chrono.start" class="clock"></span>
+                    <span v-if="chrono.start" class="clock" ></span>
                     <span v-if="!chrono.chronoState">00:00</span>
                     <span v-else>{{
                         new Date(chrono.chronoState).toISOString().slice(11, -8)
                         }}</span>
                 </div>
                 <!-- NAV -->
-                <div class="chrono-nav" :style="{'background-color': color}">
+                <div class="chrono-nav" >
                     <!-- backward -->
                     <span v-if="chrono.starTime>0" class="chrono-backward cursor-pointer" @mousedown="backward(chrono)"
                         @mouseup="stopBackwarding()" @touchstart="backward(chrono)" @touchend="stopBackwarding()"><i
@@ -53,9 +57,8 @@
                 <div v-if="chrono.showEditTitle" class="modal" @click.self="chrono.showEditTitle=false" >
                     <form @submit="editTitle(chrono)" class="edit-chrono-title" :class="{dark:darkTheme}">
 
-                        <input type="text" v-model="newTitle" :style="{'background-color':color }"
-                            :placeholder="`Change | ` + chrono.title + ` | ?`" required>
-                        <button type="submit" class="modal-submit" :style="{'background-color': color}"><i
+                        <input type="text" v-model="newTitle" :placeholder="`Change | ` + chrono.title + ` | ?`" required>
+                        <button type="submit" class="modal-submit" ><i
                                 class="fa-solid fa-plus"></i></button>
                     </form>
 
@@ -67,14 +70,14 @@
         <div v-if="showCreateChrono" class="modal" @click.self="this.showCreateChrono=false">
             <form @submit="createChrono" class=" create-chrono" :class="{dark:darkTheme}">
                 <input type="text" placeholder="add a title to your counter" v-model.trim="titleToSet" required
-                    :style="{'background-color': color}" />
-                <button type="submit" class="modal-submit" :style="{'background-color': color}"><i
+                     />
+                <button type="submit" class="modal-submit" ><i
                         class="fa-solid fa-plus"></i></button>
             </form>
         </div>
         <div :class="{dark:darkTheme}">
-            <span v-if="darkTheme" class="color-palette cursor-pointer" @click="lightTheme = !lightTheme, darkTheme = !darkTheme"><i class="fa-solid fa-sun" :class="{dark:darkTheme}"></i></span>
-            <span v-if="lightTheme" class="color-palette cursor-pointer" @click="lightTheme = !lightTheme, darkTheme = !darkTheme"><i class="fa-solid fa-moon" :class="{dark:darkTheme}"></i></span>
+            <span v-if="darkTheme" class="theme cursor-pointer" @click="lightTheme = !lightTheme, darkTheme = !darkTheme" :class="{dark:darkTheme}"><i class="fa-solid fa-sun" :class="{dark:darkTheme}" ></i></span>
+            <span v-if="lightTheme" class="theme cursor-pointer" @click="lightTheme = !lightTheme, darkTheme = !darkTheme"><i class="fa-solid fa-moon" :class="{dark:darkTheme}"></i></span>
             
         </div>
 
@@ -250,15 +253,24 @@
                     JSON.stringify(this.arrayOfChronos)
                 );
             },
-            changeColor(color) {
-        const { r, g, b, a } = color.rgba
-        this.color = `rgba(${r}, ${g}, ${b}, ${a})`
-        localStorage.setItem(
-                    "primaryColor",
-                    JSON.stringify(this.color)
-                );
-      },
-      
+            resetAllChronos(){
+            if(confirm("Are you sure you want to reset all StopWatch?")){
+
+                for (let chrono of this.arrayOfChronos){
+                    this.stop(chrono)
+                    this.reset(chrono)
+                }
+            }
+            },
+         deleteAllChronos(){
+            if(confirm("Are you sure you want to delete all StopWatch?")){
+
+            this.arrayOfChronos = [];
+            this.sendToLocalStorage();
+            this.showCreateChrono = true
+        }
+            
+        },
         },
         watch: {
             darkTheme(){
@@ -281,7 +293,6 @@
                 }
                 else if (event.keyCode === 27) {
                     self.showCreateChrono = false
-                    self.showChangePrimaryColor = false
                 }
             });
             this.showLocalTime();

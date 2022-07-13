@@ -52,12 +52,22 @@ header div{
 
 
 }
+.chrono-nav .fa-solid{
+    opacity: 1;
+    transition: all 200ms;
+
+}
+.chrono-nav .fa-solid:hover{
+    opacity: 0.6;
+    transition: all 200ms;
+
+}
 .dark{
 background-color: #000c!important;
 color:#fff;
 transition: background-color 400ms
 }
-.color-palette{
+.theme{
     position: fixed;
     bottom: 0;
     right: 8px;
@@ -67,15 +77,22 @@ transition: background-color 400ms
     border:3px solid white;
     box-shadow: 5px 5px 10px -10px #000000a6;
     margin:10px;
-    opacity: 0.5;
+    opacity: 0.6;
+    background-color: wheat;
+    transition: all 400ms;
+       
+}
+.theme:hover{
+    opacity: 1;
+    transition: all 400ms;
 
-        
 }
 .color-palette:hover{
 opacity: 1;
 }
 
 .add-counter-button {
+    opacity: 0.6;
     position: absolute;
     top: 120px;
     left: 50%;
@@ -87,7 +104,39 @@ opacity: 1;
     cursor: pointer;
     box-shadow: 5px 5px 10px -10px #000000a6;
     background-color: wheat;
+    transition: all 400ms;
 
+
+}
+.add-counter-button:hover {
+    opacity: 1;
+    transition: all 400ms;
+}
+.manage-chronos{
+    position: absolute;
+    top: 130px;
+    right: 0;
+    transform: translateX(-15px);
+    font-size: large;
+    
+
+
+}
+.manage-chronos-icon{
+    opacity: 0.6;
+    padding: 10px;
+    margin-right:10px;
+    border:3px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px -10px #000000a6;
+    background-color: wheat;
+    transition: all 400ms;
+
+}
+.manage-chronos-icon:hover{
+opacity: 1;
+transition: all 400ms;
 }
 .add-counter-button:hover {
 opacity: 0.9;
@@ -129,6 +178,7 @@ opacity: 0.9;
     border-radius: 10px;
     border:5px solid wheat;
     min-height: 130px;
+    z-index: 20;
 }
 .colorPicker{
     transform: translatey(30vh);
@@ -235,8 +285,14 @@ display:none
     border-radius: 10px;
     margin-bottom: 1rem;
     box-shadow: 5px 5px 10px -10px #000000a6;
-    border:5px solid white
+    border:5px solid white;
+transition: all 400ms   ;
 
+
+}
+.chrono-card:hover {
+opacity: 0.9;
+transition: all 400ms   ;
 }
 
 .chrono-counter {
@@ -269,7 +325,7 @@ top: 0;
 right: 0;
 font-size: 0.5rem;
 margin:3px;
-opacity: 0.5;
+opacity: 0.6;
 }
 
 .chrono-title-edit:hover{
@@ -303,9 +359,9 @@ opacity: 0.5;
 
 
 .clock-time {
-    margin:0  20px;
-    font-size: 65px;
- opacity: 0.3;   
+    margin:0  20px 10px 0;
+    font-size: 25px;
+    opacity: 0.3;   
 }
 .clock {
     position: absolute;
@@ -316,7 +372,7 @@ opacity: 0.5;
     border: 0.1px solid;
     width: 50px;
     height: 50px;
-    opacity: 0.1;
+    opacity: 0.3;
     animation-name: fade-in;
     animation-duration: 800ms;
 }
@@ -328,7 +384,7 @@ opacity: 0.5;
     display: block;
     border-bottom-left-radius:0.5px;
     border-bottom-right-radius:0.5px;
-    border-left: 1px solid #000;
+    border-left: 1px solid grey;
     content: "";
     left: 26px;
     top: 5px;
@@ -344,7 +400,7 @@ opacity: 0.5;
     width: 0px;
     height: 15px;
     display: block;
-    border-left: 1px solid #000;
+    border-left: 1px solid grey;
     content: "";
     left: 26px;
     top: 10px;
@@ -403,9 +459,7 @@ span.mask {
         width: 70% !important;
     } 
 
-    .clock-time{
-        font-size: 45px;
-    }
+   
 }
 @media screen and (max-width:500px) {
     .modal form {
@@ -414,7 +468,5 @@ span.mask {
 .modal input{
     width: 100% !important; 
 }
-.clock-time{
-    font-size: 35px;
-}
+
 }
