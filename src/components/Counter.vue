@@ -246,7 +246,6 @@
                 let indexOfChrono = this.arrayOfChronos.findIndex(e => e.title == chrono.title
                 );
                 this.arrayOfChronos.splice(indexOfChrono, 1);
-                console.log(this.arrayOfChronos);
                 /***LOCALSTORAGE NEW ARRAY  ***/
                 localStorage.setItem(
                     "chronos",
