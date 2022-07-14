@@ -78,7 +78,7 @@ transition: background-color 400ms
     box-shadow: 5px 5px 10px -10px #000000a6;
     margin:10px;
     opacity: 0.6;
-    background-color: wheat;
+    background-color: #FFD25C;
     transition: all 400ms;
        
 }
@@ -92,24 +92,24 @@ opacity: 1;
 }
 
 .add-counter-button {
-    opacity: 0.6;
+    opacity: 1;
     position: absolute;
-    top: 120px;
+    top: 118px;
     left: 50%;
     transform: translateX(-15px);
-    padding: 10px;
+    padding: 9px;
     font-size: large;
     border:3px solid white;
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 5px 5px 10px -10px #000000a6;
-    background-color: wheat;
+    background-color: #FFD25C;
     transition: all 400ms;
 
 
 }
 .add-counter-button:hover {
-    opacity: 1;
+    opacity: 0,8;
     transition: all 400ms;
 }
 .manage-chronos{
@@ -123,19 +123,20 @@ opacity: 1;
 
 }
 .manage-chronos-icon{
-    opacity: 0.6;
+    opacity: 1;
     padding: 10px;
     margin-right:10px;
     border:3px solid white;
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 5px 5px 10px -10px #000000a6;
-    background-color: wheat;
+    background-color: #FFD25C;
+
     transition: all 400ms;
 
 }
 .manage-chronos-icon:hover{
-opacity: 1;
+opacity: 0.8;
 transition: all 400ms;
 }
 .add-counter-button:hover {
@@ -161,7 +162,7 @@ opacity: 0.9;
     margin: auto;
     padding: 0 20px;
     border-radius: 10px;
-    border:5px solid wheat;
+    border:5px solid #FFD25C;
     min-height: 130px;
 }
 .edit-chrono-title{
@@ -239,16 +240,19 @@ display:none
     padding:10px;
     border:3px solid white;
     border-radius: 10px;   
-    background-color: wheat;
+    background-color: #FFD25C;
     margin:5px;
     box-shadow: 5px 5px 10px -10px #000000a6;
     cursor: pointer;
     height: 43px;
     width: 40px;
+    transition: all 400ms;
+
 
 }
 .modal-submit:hover{
-    opacity: 0.9;
+    opacity: 0.8;
+    transition: all 400ms;
     
 }
 .modal .create-chrono input, .color-picker, .edit-chrono-title input{
@@ -256,7 +260,7 @@ display:none
     border-radius: 10px;
     border: 3px solid white;
     box-shadow: 5px 5px 10px -10px #000000a6;
-    background-color: wheat;
+    background-color: #FFD25C;
     font-size: 20px;
     text-align:center ;
     width: 80%;
@@ -290,10 +294,7 @@ transition: all 400ms   ;
 
 
 }
-.chrono-card:hover {
-opacity: 0.9;
-transition: all 400ms   ;
-}
+
 
 .chrono-counter {
     position: relative;
