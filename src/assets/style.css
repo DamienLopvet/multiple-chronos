@@ -40,6 +40,7 @@ header{
     border-bottom: 1px solid black;
     margin-bottom: 10px;
     padding-top: 30px;
+    position: relative;
     
 
 }
@@ -443,6 +444,31 @@ span.mask {
     left: calc(50% - 5px);
     transform-origin: center;
 }
+audio{
+    transform: scale(0.6) translateY(130px);
+    transform-origin: left;
+    inset: 0;
+    position: absolute;
+    border-top-right-radius: 10px;
+    border-top:1px solid white;
+    border-right:1px solid white;
+    width:170px;
+    height: 30px;
+
+}
+audio::-webkit-media-controls-timeline {
+    border-radius: 0px;
+  }
+
+audio::-webkit-media-controls-panel {
+    -webkit-justify-content: center;
+    height: 30px;
+  }
+  audio::-webkit-media-controls-panel {
+    background-color: #eb2121ee;
+    border-radius: 5px;
+  }
+  
 @keyframes animateDiv{
     0%{opacity: 0.3;}
     100%{
