@@ -3,7 +3,7 @@
     <header :class="{ dark: darkTheme }">
       <div>
         <h1>Stopwatch</h1>
-        <p class="clock-time">{{ localTime }}</p>
+        <p class="clock-time">{{ localTime }} </p>
       </div>
       <audio controls="" name="media">
         <source
@@ -11,6 +11,7 @@
           type="audio/aac"
         />
       </audio>
+      <span id="log-state" :class="{ dark: darkTheme }">{{ isLogged?'connected':'offline' }} </span>
     </header>
 
     <span class="add-counter-button" @click="this.showCreateChrono = true"
@@ -150,14 +151,14 @@
       <span
         v-if="darkTheme"
         class="theme cursor-pointer"
-        @click="(lightTheme = !lightTheme), (darkTheme = !darkTheme)"
+        @click="(darkTheme = !darkTheme)"
         :class="{ dark: darkTheme }"
         ><i class="fa-solid fa-sun" :class="{ dark: darkTheme }"></i
       ></span>
       <span
-        v-if="lightTheme"
+        v-else
         class="theme cursor-pointer"
-        @click="(lightTheme = !lightTheme), (darkTheme = !darkTheme)"
+        @click="(darkTheme = !darkTheme)"
         ><i class="fa-solid fa-moon" :class="{ dark: darkTheme }"></i
       ></span>
     </div>
@@ -165,12 +166,13 @@
 </template>
 
 <script>
+import store from '@/store';
+
 export default {
   name: "Counter",
 
   data() {
     return {
-      lightTheme: true,
       darkTheme: false,
       showCreateChrono: false,
       arrayOfChronos: [],
@@ -366,6 +368,11 @@ export default {
         document.body.classList.remove("dark");
       }
     },
+  },
+  computed:{
+    isLogged(){
+      return store.state.isLogged
+    }
   },
 
   mounted() {

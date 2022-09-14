@@ -91,6 +91,13 @@ transition: background-color 400ms
 .color-palette:hover{
 opacity: 1;
 }
+#log-state{
+    position: absolute;
+    bottom: -7px;
+    background-color: #f8f8f8;
+    padding: 0 10px;
+    right: 30px;
+}
 
 .add-counter-button {
     opacity: 1;
@@ -447,13 +454,15 @@ span.mask {
 audio{
     transform: scale(0.6) translateY(130px);
     transform-origin: left;
-    inset: 0;
     position: absolute;
     border-top-right-radius: 10px;
-    border-top:1px solid white;
-    border-right:1px solid white;
-    width:170px;
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    width: 170px;
     height: 30px;
+    top: 9px;
+    left: 17px;
+    padding:0 5px;
 
 }
 audio::-webkit-media-controls-timeline {
@@ -465,7 +474,7 @@ audio::-webkit-media-controls-panel {
     height: 30px;
   }
   audio::-webkit-media-controls-panel {
-    background-color: #eb2121ee;
+    background-color: #f8f8f8;
     border-radius: 5px;
   }
   

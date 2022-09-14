@@ -1,7 +1,9 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/MyProfile">Profile</router-link>
+    <router-link to="/"><i class="fa-solid fa-home" :class="{ dark: darkTheme }"></i
+      ></router-link> 
+    <router-link to="/MyProfile" ><i class="fa-solid fa-user" :class="{ dark: darkTheme }"></i
+      ></router-link>
   </div>
   <router-view/>
 </template>
@@ -16,12 +18,13 @@
 }
 
 #nav {
-  padding: 30px;
+  position: relative;
+  
   a {
     font-weight: bold;
     color: #2c3e50;
 
-    &.router-link-exact-active {
+    &.router-link-exact-active i{
       color: #42b983;
     }
   }
