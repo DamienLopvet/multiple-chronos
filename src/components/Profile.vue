@@ -36,15 +36,21 @@
                 axios.post("http://localhost:3000/api/auth/login", payload).then(res=>{
                 const  user = res.data.userId;
                 const token = res.data.token;
-                console.log(user, token)
                  this.setUser(user);
                  this.setToken(token);
-                 this.setIsLogged('true')
-             
-            }).then(this.$router.push("/")).catch(e=>{
-                console.log(e);
-            this.error = e.response?.data?.message || e.message
-            setTimeout(()=>this.error ="", "5000" )
+                 this.setIsLogged('true');
+                 let d = new Date();
+                 d.setTime(d.getTime() + 365 * 24 * 60 * 60 * 1000);
+                 let expires = "expires=" + d.toUTCString();
+                 document.cookie =
+                 "TOKEN=" + token + ";" + expires + ";path=/";
+                 document.cookie = 
+                 "USER=" + user +";" + expires + ";path=/";
+                 this.$router.push("/")
+                }).catch(e=>{
+                    console.log(e);
+                this.error = e.response?.data?.message || e.message
+                setTimeout(()=>this.error ="", "5000" )
         
                 })
                 

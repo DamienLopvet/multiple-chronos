@@ -2,8 +2,8 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    user: null,
-    token: null,
+    user: undefined,
+    token: undefined,
     isLogged:false,
   },
   mutations: {

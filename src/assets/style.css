@@ -99,57 +99,45 @@ opacity: 1;
     right: 30px;
 }
 
-.add-counter-button {
-    opacity: 1;
-    position: absolute;
-    top: 118px;
-    left: 50%;
-    transform: translateX(-15px);
-    padding: 9px;
-    font-size: large;
-    border:3px solid white;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 5px 5px 10px -10px #000000a6;
-    background-color: #FFD25C;
-    transition: all 400ms;
-
-
-}
-.add-counter-button:hover {
-    opacity: 0,8;
-    transition: all 400ms;
-}
 .manage-chronos{
-    position: absolute;
-    top: 130px;
-    right: 0;
-    transform: translateX(-15px);
     font-size: large;
-    
-
-
+    display: flex;
+    flex-flow: row;
+    gap:1rem;
+    justify-content: end;
 }
-.manage-chronos-icon{
-    opacity: 1;
-    padding: 10px;
-    margin-right:10px;
-    border:3px solid white;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 5px 5px 10px -10px #000000a6;
-    background-color: #FFD25C;
 
-    transition: all 400ms;
-
-}
-.manage-chronos-icon:hover{
+.manage-chronos:hover{
 opacity: 0.8;
 transition: all 400ms;
 }
-.add-counter-button:hover {
-opacity: 0.9;
+
+.add-counter-button {
+    opacity: 1;
+    padding: 9px 10px;
+    font-size: large;
+    border:3px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px -10px #000000a6;
+    background-color: #FFD25C;
+    transition: all 400ms;
+
+
 }
+
+.manage-chronos-icon{
+    opacity: 1;
+    padding: 10px;
+    border:3px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px -10px #000000a6;
+    background-color: #FFD25C;
+    transition: all 400ms;
+
+}
+
 .modal {
     position: fixed;
     background-color:#0000015c;
