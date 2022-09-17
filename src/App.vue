@@ -1,8 +1,8 @@
 <template>
   <div id="nav">
-    <router-link to="/"><i class="fa-solid fa-home" :class="{ dark: darkTheme }"></i
+    <router-link to="/" id="counte_link"><i class="fa-solid fa-home" ></i
       ></router-link> 
-    <router-link to="/MyProfile" ><i class="fa-solid fa-user" :class="{ dark: darkTheme }"></i
+    <router-link to="/MyProfile" id="profile_link" ><i class="fa-solid fa-user"></i
       ></router-link>
   </div>
   <router-view/>
@@ -18,11 +18,18 @@
 }
 
 #nav {
-  position: relative;
-  
+  display: flex;
+  flex-flow: row;
+  justify-content: end;
+  gap: 0.5rem;  
+  margin-right:10px;
+  translate:-50px;
   a {
+    padding:5px;
     font-weight: bold;
     color: #2c3e50;
+    background-color:#f8f8f8;
+    border-radius:5px;
 
     &.router-link-exact-active i{
       color: #42b983;

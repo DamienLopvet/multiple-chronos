@@ -3,6 +3,43 @@ input,
 button {
     font-size: 15px;
 }
+input{
+    height: 40px;
+    border-radius: 10px;
+    border: 3px solid white;
+    background-color: #FFD25C;
+    text-align:center ;
+    box-shadow: 5px 5px 10px -10px #0000004a
+
+}
+input[type=submit]{
+    cursor: pointer;
+    box-shadow: 5px 5px 10px -10px #000000a6;
+
+}
+input[type=checkbox]{
+    display: inline-block;
+    height: 15px;
+    box-shadow: 5px 5px 10px -10px #000000a6;
+    margin-right: 5px;
+    translate:0 2px
+
+}
+form{
+    display: flex;
+    width: 85%;
+    min-height: 130px;
+    flex-flow: column;
+    justify-content: center;
+    gap: 1rem;
+    border: 4px solid #FFD25C;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px 10px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 5px 5px 10px -10px #000000a6;
+}
 
 body{
     height: 100vh;
@@ -23,7 +60,20 @@ section{
 .fa-solid{
 color:#000000d1
 }
+/** Profile page**/
+.user-login, .user-signup{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    gap:1rem;
 
+
+}
+
+
+
+
+/******End Profile Page*************/
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -39,7 +89,6 @@ header{
     margin: auto;
     border-bottom: 1px solid black;
     margin-bottom: 10px;
-    padding-top: 30px;
     position: relative;
     
 
@@ -147,34 +196,14 @@ transition: all 400ms;
     left: 0;
 }
 .modal .create-chrono  {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
     transform: translatey(40vh);
     height: 20%;
     align-items: center;
-    background-color: white;
-    width: 30%;
-    margin: auto;
-    padding: 0 20px;
-    border-radius: 10px;
-    border:5px solid #FFD25C;
-    min-height: 130px;
 }
 .edit-chrono-title{
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
     transform: translatey(30vh);
     height: 20%;
     align-items: center;
-    background-color: white;
-    width: 30%;
-    margin: auto;
-    padding: 0 20px;
-    border-radius: 10px;
-    border:5px solid wheat;
-    min-height: 130px;
     z-index: 20;
 }
 .colorPicker{
@@ -188,9 +217,7 @@ transition: all 400ms;
     min-height: 130px;
     max-width:70%
 }
-.colorPicker .modal-submit{
-    margin-top: 30px
-}
+
 .colorPicker .hu-color-picker{
     display: flex;
     flex-flow: column;
@@ -232,35 +259,8 @@ display:none
 .modal{
     z-index: 2;
 }
-.modal-submit{
-    padding:10px;
-    border:3px solid white;
-    border-radius: 10px;   
-    background-color: #FFD25C;
-    margin:5px;
-    box-shadow: 5px 5px 10px -10px #000000a6;
-    cursor: pointer;
-    height: 43px;
-    width: 40px;
-    transition: all 400ms;
 
 
-}
-.modal-submit:hover{
-    opacity: 0.8;
-    transition: all 400ms;
-    
-}
-.modal .create-chrono input, .color-picker, .edit-chrono-title input{
-    height: 40px;
-    border-radius: 10px;
-    border: 3px solid white;
-    box-shadow: 5px 5px 10px -10px #000000a6;
-    background-color: #FFD25C;
-    font-size: 20px;
-    text-align:center ;
-    width: 80%;
-}
 .cursor-pointer{
     cursor: pointer;
 }
@@ -318,8 +318,8 @@ transition: all 400ms   ;
 }
 .chrono-title-edit{
 position: absolute;
-top: 0;
-right: 0;
+top: 2px;
+right: 2px;
 font-size: 0.5rem;
 margin:3px;
 opacity: 0.6;
@@ -440,16 +440,13 @@ span.mask {
     transform-origin: center;
 }
 audio{
-    transform: scale(0.6) translateY(130px);
+    transform: scale(0.8) translateY(130px);
     transform-origin: left;
     position: absolute;
-    border-top-right-radius: 10px;
-    border-top: 1px solid white;
-    border-right: 1px solid white;
     width: 170px;
     height: 30px;
-    top: 9px;
-    left: 17px;
+    top: -45px;
+    left: 10px;
     padding:0 5px;
 
 }
@@ -465,32 +462,4 @@ audio::-webkit-media-controls-panel {
     background-color: #f8f8f8;
     border-radius: 5px;
   }
-  
-@keyframes animateDiv{
-    0%{opacity: 0.3;}
-    100%{
-        opacity: 0;
-    }
-}
-@media screen and (max-width:900px) {
-    .modal form {
-        width: 60%!important;
-    } 
-    
-}
-@media screen and (max-width:700px) {
-    .modal form {
-        width: 70% !important;
-    } 
 
-   
-}
-@media screen and (max-width:500px) {
-    .modal form {
-        width: 80% !important;
-    } 
-.modal input{
-    width: 100% !important; 
-}
-
-}
