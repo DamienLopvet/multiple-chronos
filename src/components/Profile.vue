@@ -8,7 +8,7 @@
                 <label for="stay-connected"><input type="checkbox" id="stay-connected" v-model="wantCookies">Remain connected</label>
                 <input type="submit" @click.prevent="login" value="submit" />
             </form>
-            <a href="#">I don't remember my pasword?</a>
+            <!-- <a href="#">I don't remember my pasword?</a> -->
             <a href="" @click.prevent="handleSignup">Create an account</a>
         </div>
         <div class="user-logout" v-if="isLogged">
@@ -21,7 +21,7 @@
             <form>
                 <input type="email" v-model="mail" placeholder="mail" />
                 <input type="password" v-model="password" />
-                <label for="stay-connected"><input type="checkbox" id="stay-connected" v-model="wantCookies">Remain connected</label>
+                <label for="stay-connected"><input type="checkbox" id="stay-connected" v-model="wantCookies">Stay connected</label>
                 <input type="submit" @click.prevent="signup"  value="submit"/>
             </form>
             <a href="" @click.prevent="handleLogin">Oh, never mind, I have an account ! </a>
