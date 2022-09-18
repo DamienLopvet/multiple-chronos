@@ -16,6 +16,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f https://github.com/DamienLopvet/multiple-chronos.git main:gh-pages
+git push -f https://github.com/DamienLopvet/multiple-chronos.git master:gh-pages
 
 cd -
