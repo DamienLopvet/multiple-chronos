@@ -1,3 +1,7 @@
+:root{
+    --background-color :#f8f8f8
+    --color : black
+}
 body,
 input,
 button {
@@ -15,7 +19,7 @@ input{
 input[type=submit]{
     cursor: pointer;
     box-shadow: 5px 5px 10px -10px #000000a6;
-
+    align-self: center;
 }
 input[type=checkbox]{
     display: inline-block;
@@ -33,7 +37,7 @@ form{
     justify-content: center;
     gap: 1rem;
     border: 4px solid #FFD25C;
-    background-color: white;
+    background-color: var(--background-color);
     border-radius: 10px;
     padding: 20px 10px;
     max-width: 400px;
@@ -43,7 +47,7 @@ form{
 
 body{
     height: 100vh;
-    background-color: #f8f8f8;
+    background-color: var(--background-color)
 }
 
 button {
@@ -69,6 +73,13 @@ color:#000000d1
 
 
 }
+.user-logout a{
+    color : var(--color);
+    border: 1px solid black;
+    padding: 5px;
+    border-color: var(--color);
+    
+}
 
 
 
@@ -79,7 +90,7 @@ color:#000000d1
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: var(--color);
 }
 h1{
     padding-bottom: 10px;
@@ -90,6 +101,7 @@ header{
     border-bottom: 1px solid black;
     margin-bottom: 10px;
     position: relative;
+    color:var(--color)
     
 
 }
@@ -112,10 +124,16 @@ header div{
     transition: all 200ms;
 
 }
-.dark{
-background-color: #000c!important;
-color:#fff;
-transition: background-color 400ms
+.loadspinner{
+    position: absolute;
+    top:100%;
+    left:0;
+    right: 0;
+    bottom:0;
+    translate:25px
+}
+.loadspinner .clock{
+    scale:1.5
 }
 .theme{
     position: fixed;
@@ -130,7 +148,10 @@ transition: background-color 400ms
     opacity: 0.6;
     background-color: #FFD25C;
     transition: all 400ms;
-       
+    z-index: 200;
+    min-height: 22px;
+    min-width: 15px;
+ 
 }
 .theme:hover{
     opacity: 1;
@@ -143,9 +164,10 @@ opacity: 1;
 #log-state{
     position: absolute;
     bottom: -7px;
-    background-color: #f8f8f8;
+    background-color: var(--background-color);
     padding: 0 10px;
     right: 30px;
+    color:var(--color)
 }
 
 .manage-chronos{
@@ -171,8 +193,8 @@ transition: all 400ms;
     box-shadow: 5px 5px 10px -10px #000000a6;
     background-color: #FFD25C;
     transition: all 400ms;
-
-
+    min-height: 22px;
+    min-width: 15px;
 }
 
 .manage-chronos-icon{
@@ -184,6 +206,8 @@ transition: all 400ms;
     box-shadow: 5px 5px 10px -10px #000000a6;
     background-color: #FFD25C;
     transition: all 400ms;
+    min-height: 22px;
+    min-width: 15px;
 
 }
 
@@ -198,12 +222,10 @@ transition: all 400ms;
 .modal .create-chrono  {
     transform: translatey(40vh);
     height: 20%;
-    align-items: center;
 }
 .edit-chrono-title{
     transform: translatey(30vh);
     height: 20%;
-    align-items: center;
     z-index: 20;
 }
 .colorPicker{
@@ -303,17 +325,19 @@ transition: all 400ms   ;
     font-size: 3rem;
     width: 100%;
     height: 100%;
-    background-color: #fff;
+    background-color: var(--background-color);
+    color:var(--color)
     }
 
 .chrono-title {
-    font-size: 1.1rem; 
+    font-size: 1.3rem; 
     width: 100%;
     border-top-left-radius:5px;
     border-top-right-radius:5px;
     background-color: wheat;
     z-index: 1;
     position: relative;
+    font-family: comic sans ms;
 
 }
 .chrono-title-edit{
@@ -423,12 +447,7 @@ opacity: 0.6;
         transform: rotate(360deg);
     }
 }
-.color{
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-}
-span.mask {
+/* span.mask {
     width: 10px;
     height: 50px;
     background: rgb(255, 255, 255);
@@ -438,7 +457,7 @@ span.mask {
     animation-iteration-count: infinite;
     left: calc(50% - 5px);
     transform-origin: center;
-}
+} */
 audio{
     transform: scale(0.8) translateY(130px);
     transform-origin: left;
@@ -452,13 +471,15 @@ audio{
 }
 audio::-webkit-media-controls-timeline {
     border-radius: 0px;
+    
   }
 
 audio::-webkit-media-controls-panel {
     -webkit-justify-content: center;
     height: 30px;
-  }
-  audio::-webkit-media-controls-panel {
+    
+}
+audio::-webkit-media-controls-panel {
     background-color: #f8f8f8;
     border-radius: 5px;
   }

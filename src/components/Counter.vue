@@ -1,6 +1,6 @@
 <template>
     <section id="counter_section">
-        <header :class="{ dark: darkTheme }">
+        <header >
             <div>
                 <h1>Stopwatch</h1>
                 <p class="clock-time">{{ localTime }}</p>
@@ -11,11 +11,13 @@
                     type="audio/aac"
                 />
             </audio>
-            <span id="log-state" :class="{ dark: darkTheme }"
-                >{{ isLogged ? "connected" : "offline" }}
+            <span id="log-state">{{ isLogged ? "connected" : "offline" }}
             </span>
         </header>
         <p v-if="error" >{{error}} </p>
+        <div v-if="loading" class="loadspinner">
+            <span class="clock"></span>
+        </div>
         <div class="manage-chronos">
             <span
                 class="add-counter-button"
@@ -44,7 +46,7 @@
                 <!-- Title -->
                 <div
                     class="chrono-title"
-                    @click="chrono.showEditTitle = true"
+                    @click="chrono.showEditTitle = true; this.newTitle = chrono.title"
                     :style="{ 'background-color': chrono.color }"
                 >
                     <p type="text">{{ chrono.title }}</p>
@@ -57,7 +59,7 @@
                 <div
                     class="chrono-counter"
                     @click="!chrono.start ? start(chrono) : stop(chrono)"
-                    :class="{ dark: darkTheme }"
+                    
                 >
                     <span v-if="chrono.start" class="clock"></span>
                     <span v-if="!chrono.chronoState">00:00</span>
@@ -120,12 +122,13 @@
                     <form
                         @submit="editTitle(chrono)"
                         class="edit-chrono-title"
-                        :class="{ dark: darkTheme }"
+                        
                     >
                         <input
                             type="text"
                             v-model="newTitle"
                             :placeholder="`Change | ` + chrono.title + ` | ?`"
+                            
                             required
                         />
                         <input type="submit" class="modal-submit" value="submit">
@@ -142,7 +145,7 @@
             <form
                 @submit="createChrono"
                 class="create-chrono"
-                :class="{ dark: darkTheme }"
+                
             >
                 <input
                     type="text"
@@ -154,19 +157,19 @@
                    
             </form>
         </div>
-        <div :class="{ dark: darkTheme }">
+        <div >
             <span
-                v-if="darkTheme"
+                v-if="darkThemeIsSet"
                 class="theme cursor-pointer"
-                @click="darkTheme = !darkTheme"
-                :class="{ dark: darkTheme }"
-                ><i class="fa-solid fa-sun" :class="{ dark: darkTheme }"></i
+                @click="toggleDarkTheme('light')"
+                
+                ><i class="fa-solid fa-sun" ></i
             ></span>
             <span
                 v-else
                 class="theme cursor-pointer"
-                @click="darkTheme = !darkTheme"
-                ><i class="fa-solid fa-moon" :class="{ dark: darkTheme }"></i
+                @click="toggleDarkTheme('dark')"
+                ><i class="fa-solid fa-moon" ></i
             ></span>
         </div>
     </section>
@@ -183,13 +186,13 @@
         data() {
             return {
                 error: "",
-                darkTheme: false,
                 showCreateChrono: false,
                 arrayOfChronos: [],
                 counter: 0,
                 titleToSet: "",
                 localTime: "",
-                newTitle:"",
+                newTitle:'',
+                loading:true,
                 colors: [
                     "#B1EDE8",
                     "#da3e52",
@@ -215,7 +218,7 @@
         },
 
         methods: {
-            ...mapMutations(["setUser", "setToken", "setIsLogged"]),
+            ...mapMutations(["setUser", "setToken", "setIsLogged","setDarkTheme"]),
             notificationRequest() {
                 Notification.requestPermission();
             },
@@ -324,6 +327,7 @@
                         this.arrayOfChronos = res.data[0].chronos;
                         this.sendToLocalStorage();
                         this.showCreateChrono = false;
+                        this.loading=false
                     })
                     .catch((e) => (this.error = e));
             },
@@ -443,17 +447,52 @@
                     }, 2000);
                 }
             },
-          
-        },
-
-        watch: {
-            darkTheme() {
-                if (this.darkTheme) {
-                    document.body.classList.add("dark");
-                } else {
-                    document.body.classList.remove("dark");
+            setTheme(){
+               let theme = JSON.parse(localStorage.getItem("darkTheme"));
+                if(theme){
+                    this.setDarkTheme(true)
                 }
+                else this.setDarkTheme(false)
+                
             },
+          toggleDarkTheme(val){
+            if(val === "light"){
+                this.setDarkTheme(false);
+                document.body.classList.remove("dark");
+                localStorage.setItem(
+                    "darkTheme",
+                    false
+                );
+                
+
+            }
+            else if(val === 'dark'){
+                this.setDarkTheme(true);
+                document.body.classList.add("dark");
+                localStorage.setItem(
+                    "darkTheme",
+                    true
+                );
+                
+
+            }
+          },
+        },
+        watch:{
+            darkThemeIsSet(){
+            const root = document.documentElement;
+
+                if(this.darkThemeIsSet){
+                root.style.setProperty("--background-color", '#383333');
+                root.style.setProperty("--color", 'white')
+
+                }else{
+                root.style.setProperty("--background-color", '#f8f8f8');
+                root.style.setProperty("--color", 'black')
+
+                }
+            }
+
         },
         computed: {
             isLogged() {
@@ -465,6 +504,9 @@
             tokenIsSet() {
                 return store.state.token;
             },
+            darkThemeIsSet(){
+                return store.state.darkTheme;
+            }
         },
         created() {
             const token = ("; " + document.cookie)
@@ -475,18 +517,12 @@
                 .split(`; USER=`)
                 .pop()
                 .split(";")[0];
-
-            if (user.length === 0 || token.length === 0) {
-                new Notification("You're offline", {
-                    body: "please connect or register to access all your stopwatches ",
-                    icon: "../assets/logo.png",
-                    tag: "connect notif",
-                });
-            } else {
+                if (token && user){
                 this.setUser(user);
                 this.setToken(token);
-                this.setIsLogged("true");
+                this.setIsLogged(true);
             }
+
         },
         mounted() {
             var self = this;
@@ -503,9 +539,7 @@
             });
             this.showLocalTime();
             this.notificationRequest();
+            this.setTheme()
         },
     };
 </script>
-<style>
- 
-</style>

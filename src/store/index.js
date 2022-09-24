@@ -5,6 +5,7 @@ export default createStore({
     user: undefined,
     token: undefined,
     isLogged:false,
+    darkTheme:null,
   },
   mutations: {
     setUser(state, user) {
@@ -15,6 +16,9 @@ export default createStore({
     },
     setIsLogged(state, isLogged){
       state.isLogged = isLogged
+    },
+    setDarkTheme(state, darkTheme){
+      state.darkTheme = darkTheme
     }
   },
   actions: {},

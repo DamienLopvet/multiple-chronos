@@ -41,7 +41,7 @@
         <div class="user-logout" v-if="isLogged">
             <p>you are connected</p>
 
-            <a href="#" @click="logout">logout</a>
+            <a href="#" @click.prevent="logout">logout</a>
         </div>
         <div class="error" v-if="error">{{ this.error }}</div>
         <div class="user-signup" v-if="willSignup">
@@ -233,14 +233,7 @@
                 .split(`; USER=`)
                 .pop()
                 .split(";")[0];
-
-            if (user.length === 0 || token.length === 0) {
-                new Notification("You're offline", {
-                    body: "please connect or register to access all your stopwatches ",
-                    icon: "../assets/logo.png",
-                    tag: "connect notif",
-                });
-            } else {
+                if (token && user){
                 this.setUser(user);
                 this.setToken(token);
                 this.setIsLogged(true);
