@@ -4,9 +4,22 @@
         <div class="user-login" v-if="!isLogged && showLogin">
             <h2>Login</h2>
             <form @submit.prevent="login">
-                <input type="email" v-model="mail" placeholder="Email" required />
-                <input type="password" v-model="password" placeholder="Password" required />
-                <label class="toggle stay-connected-label" for="Stay_connected_login">
+                <input
+                    type="email"
+                    v-model="mail"
+                    placeholder="Email"
+                    required
+                />
+                <input
+                    type="password"
+                    v-model="password"
+                    placeholder="Password"
+                    required
+                />
+                <label
+                    class="toggle stay-connected-label"
+                    for="Stay_connected_login"
+                >
                     <input
                         type="checkbox"
                         class="toggle__input"
@@ -33,7 +46,7 @@
                     Stay connected
                 </label>
 
-                <input type="submit"  value="submit" >
+                <input type="submit" value="submit" />
             </form>
             <!-- <a href="#">I don't remember my pasword?</a> -->
             <a href="" @click.prevent="handleSignup">Create an account</a>
@@ -46,12 +59,33 @@
         <div class="error" v-if="error">{{ this.error }}</div>
         <div class="user-signup" v-if="willSignup">
             <h2>Fill the form to create an account</h2>
-            <form @submit.prevent="signup" >
-                <input type="email" v-model="mail" placeholder="enter your email" required />
-                <input type="password" v-model="password" placeholder="Enter you password" minlength="8" required/>
-                <input type="password" v-model="passwordVerif" :pattern="password" placeholder="Verify you password" title="Passwords are not equals" required/>
+            <form @submit.prevent="signup">
+                <input
+                    type="email"
+                    v-model="mail"
+                    placeholder="enter your email"
+                    required
+                />
+                <input
+                    type="password"
+                    v-model="password"
+                    placeholder="Enter you password"
+                    minlength="8"
+                    required
+                />
+                <input
+                    type="password"
+                    v-model="passwordVerif"
+                    :pattern="password"
+                    placeholder="Verify you password"
+                    title="Passwords are not equals"
+                    required
+                />
 
-                <label class="toggle stay-connected-label" for="Stay_connected_signup">
+                <label
+                    class="toggle stay-connected-label"
+                    for="Stay_connected_signup"
+                >
                     <input
                         type="checkbox"
                         class="toggle__input"
@@ -96,7 +130,7 @@
             return {
                 mail: null,
                 password: "",
-                passwordVerif:"",
+                passwordVerif: "",
                 error: "",
                 willSignup: false,
                 showLogin: true,
@@ -116,7 +150,7 @@
                 };
                 axios
                     .post(
-                        "https://multiple-chronos.herokuapp.com/api/auth/login",
+                        "https://multiplechronobackend.onrender.com/api/auth/login",
                         payload
                     )
                     .then((res) => {
@@ -171,7 +205,7 @@
                 };
                 axios
                     .post(
-                        "https://multiple-chronos.herokuapp.com/api/auth/signup",
+                        "https://multiplechronobackend.onrender.com/api/auth/signup",
                         payload
                     )
                     .then((res) => {
@@ -196,7 +230,7 @@
                 let payload = { chronos: [] };
                 axios
                     .post(
-                        `https://multiple-chronos.herokuapp.com/api/chronos`,
+                        `https://multiplechronobackend.onrender.com/api/chronos`,
                         payload,
                         {
                             headers: {
@@ -233,7 +267,7 @@
                 .split(`; USER=`)
                 .pop()
                 .split(";")[0];
-                if (token && user){
+            if (token && user) {
                 this.setUser(user);
                 this.setToken(token);
                 this.setIsLogged(true);
@@ -299,7 +333,7 @@ You'll need to replace with your own color values.
         width: $track-width;
         box-shadow: 5px 5px 10px -10px #0000004a;
     }
-   
+
     .toggle-indicator {
         align-items: center;
         background: white;
@@ -339,13 +373,12 @@ You'll need to replace with your own color values.
             border-radius: 0;
         }
     }
-    input:invalid{
-        outline-color:rgba(255, 0, 0, 0.527);
-        transition:outline-color 300ms
+    input:invalid {
+        outline-color: rgba(255, 0, 0, 0.527);
+        transition: outline-color 300ms;
     }
-    input:valid{
-        outline-color:rgba(0, 255, 64, 0.527);
-        transition:outline-color 300ms
-
+    input:valid {
+        outline-color: rgba(0, 255, 64, 0.527);
+        transition: outline-color 300ms;
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <section id="counter_section">
-        <header >
+        <header>
             <div>
                 <h1>Stopwatch</h1>
                 <p class="clock-time">{{ localTime }}</p>
@@ -11,10 +11,11 @@
                     type="audio/aac"
                 />
             </audio>
-            <span id="log-state">{{ isLogged ? "connected" : "offline" }}
+            <span id="log-state"
+                >{{ isLogged ? "connected" : "offline" }}
             </span>
         </header>
-        <p v-if="error" >{{error}} </p>
+        <p v-if="error">{{ error }}</p>
         <div v-if="loading" class="loadspinner">
             <span class="clock"></span>
         </div>
@@ -46,7 +47,10 @@
                 <!-- Title -->
                 <div
                     class="chrono-title"
-                    @click="chrono.showEditTitle = true; this.newTitle = chrono.title"
+                    @click="
+                        chrono.showEditTitle = true;
+                        this.newTitle = chrono.title;
+                    "
                     :style="{ 'background-color': chrono.color }"
                 >
                     <p type="text">{{ chrono.title }}</p>
@@ -59,7 +63,6 @@
                 <div
                     class="chrono-counter"
                     @click="!chrono.start ? start(chrono) : stop(chrono)"
-                    
                 >
                     <span v-if="chrono.start" class="clock"></span>
                     <span v-if="!chrono.chronoState">00:00</span>
@@ -119,19 +122,18 @@
                     class="modal"
                     @click.self="chrono.showEditTitle = false"
                 >
-                    <form
-                        @submit="editTitle(chrono)"
-                        class="edit-chrono-title"
-                        
-                    >
+                    <form @submit="editTitle(chrono)" class="edit-chrono-title">
                         <input
                             type="text"
                             v-model="newTitle"
                             :placeholder="`Change | ` + chrono.title + ` | ?`"
-                            
                             required
                         />
-                        <input type="submit" class="modal-submit" value="submit">
+                        <input
+                            type="submit"
+                            class="modal-submit"
+                            value="submit"
+                        />
                     </form>
                 </div>
             </div>
@@ -142,34 +144,28 @@
             class="modal"
             @click.self="this.showCreateChrono = false"
         >
-            <form
-                @submit="createChrono"
-                class="create-chrono"
-                
-            >
+            <form @submit="createChrono" class="create-chrono">
                 <input
                     type="text"
                     placeholder="add a title to your counter"
                     v-model.trim="titleToSet"
                     required
                 />
-                <input type="submit" value="submit" >
-                   
+                <input type="submit" value="submit" />
             </form>
         </div>
-        <div >
+        <div>
             <span
                 v-if="darkThemeIsSet"
                 class="theme cursor-pointer"
                 @click="toggleDarkTheme('light')"
-                
-                ><i class="fa-solid fa-sun" ></i
+                ><i class="fa-solid fa-sun"></i
             ></span>
             <span
                 v-else
                 class="theme cursor-pointer"
                 @click="toggleDarkTheme('dark')"
-                ><i class="fa-solid fa-moon" ></i
+                ><i class="fa-solid fa-moon"></i
             ></span>
         </div>
     </section>
@@ -191,8 +187,8 @@
                 counter: 0,
                 titleToSet: "",
                 localTime: "",
-                newTitle:'',
-                loading:true,
+                newTitle: "",
+                loading: true,
                 colors: [
                     "#B1EDE8",
                     "#da3e52",
@@ -218,7 +214,12 @@
         },
 
         methods: {
-            ...mapMutations(["setUser", "setToken", "setIsLogged","setDarkTheme"]),
+            ...mapMutations([
+                "setUser",
+                "setToken",
+                "setIsLogged",
+                "setDarkTheme",
+            ]),
             notificationRequest() {
                 Notification.requestPermission();
             },
@@ -285,12 +286,16 @@
             updateDataBase() {
                 let payload = { chronos: this.arrayOfChronos };
                 axios
-                    .put(`https://multiple-chronos.herokuapp.com/api/chronos`, payload, {
-                        headers: {
-                            Authorization: "Bearer " + this.tokenIsSet,
-                        },
-                        withCredentials: false,
-                    })
+                    .put(
+                        `https://multiplechronobackend.onrender.com/api/chronos`,
+                        payload,
+                        {
+                            headers: {
+                                Authorization: "Bearer " + this.tokenIsSet,
+                            },
+                            withCredentials: false,
+                        }
+                    )
                     .catch((e) => (this.error = e));
             },
             sendToLocalStorage() {
@@ -298,7 +303,6 @@
                     "chronos",
                     JSON.stringify(this.arrayOfChronos)
                 );
-
             },
             /***GET LOCAL STORAGE ITEMS**/
             getLocalStorage() {
@@ -306,6 +310,8 @@
                     JSON.parse(localStorage.getItem("chronos")) || [];
                 if (this.arrayOfChronos.length == 0) {
                     this.showCreateChrono = true;
+                }else{
+                    this.loading = false;
                 }
 
                 this.arrayOfChronos.forEach((element) => {
@@ -320,14 +326,14 @@
                         Authorization: "Bearer " + this.tokenIsSet,
                     },
                     method: "get",
-                    url: `https://multiple-chronos.herokuapp.com/api/chronos`,
+                    url: `https://multiplechronobackend.onrender.com/api/chronos`,
                     withCredentials: false,
                 })
                     .then((res) => {
                         this.arrayOfChronos = res.data[0].chronos;
                         this.sendToLocalStorage();
                         this.showCreateChrono = false;
-                        this.loading=false
+                        this.loading = false;
                     })
                     .catch((e) => (this.error = e));
             },
@@ -370,7 +376,6 @@
                 }
             },
             editTitle(chrono) {
-              
                 let chronoToUpdate = this.arrayOfChronos.findIndex(
                     (e) => e.title == chrono.title
                 );
@@ -447,52 +452,36 @@
                     }, 2000);
                 }
             },
-            setTheme(){
-               let theme = JSON.parse(localStorage.getItem("darkTheme"));
-                if(theme){
-                    this.setDarkTheme(true)
-                }
-                else this.setDarkTheme(false)
-                
+            setTheme() {
+                let theme = JSON.parse(localStorage.getItem("darkTheme"));
+                if (theme) {
+                    this.setDarkTheme(true);
+                } else this.setDarkTheme(false);
             },
-          toggleDarkTheme(val){
-            if(val === "light"){
-                this.setDarkTheme(false);
-                document.body.classList.remove("dark");
-                localStorage.setItem(
-                    "darkTheme",
-                    false
-                );
-                
-
-            }
-            else if(val === 'dark'){
-                this.setDarkTheme(true);
-                document.body.classList.add("dark");
-                localStorage.setItem(
-                    "darkTheme",
-                    true
-                );
-                
-
-            }
-          },
-        },
-        watch:{
-            darkThemeIsSet(){
-            const root = document.documentElement;
-
-                if(this.darkThemeIsSet){
-                root.style.setProperty("--background-color", '#383333');
-                root.style.setProperty("--color", 'white')
-
-                }else{
-                root.style.setProperty("--background-color", '#f8f8f8');
-                root.style.setProperty("--color", 'black')
-
+            toggleDarkTheme(val) {
+                if (val === "light") {
+                    this.setDarkTheme(false);
+                    document.body.classList.remove("dark");
+                    localStorage.setItem("darkTheme", false);
+                } else if (val === "dark") {
+                    this.setDarkTheme(true);
+                    document.body.classList.add("dark");
+                    localStorage.setItem("darkTheme", true);
                 }
-            }
+            },
+        },
+        watch: {
+            darkThemeIsSet() {
+                const root = document.documentElement;
 
+                if (this.darkThemeIsSet) {
+                    root.style.setProperty("--background-color", "#383333");
+                    root.style.setProperty("--color", "white");
+                } else {
+                    root.style.setProperty("--background-color", "#f8f8f8");
+                    root.style.setProperty("--color", "black");
+                }
+            },
         },
         computed: {
             isLogged() {
@@ -504,9 +493,9 @@
             tokenIsSet() {
                 return store.state.token;
             },
-            darkThemeIsSet(){
+            darkThemeIsSet() {
                 return store.state.darkTheme;
-            }
+            },
         },
         created() {
             const token = ("; " + document.cookie)
@@ -517,35 +506,26 @@
                 .split(`; USER=`)
                 .pop()
                 .split(";")[0];
-                if (token && user){
+            if (token && user) {
                 this.setUser(user);
                 this.setToken(token);
                 this.setIsLogged(true);
             }
-
         },
         mounted() {
             var self = this;
-            if (this.isLogged){
-              this.importDBChronos();
-
-            }
-            else this.getLocalStorage()
+            if (this.isLogged) {
+                this.importDBChronos();
+            } else this.getLocalStorage();
             window.addEventListener("keydown", function (event) {
-                if (event.code === 'Escape') {
+                if (event.code === "Escape") {
                     self.showCreateChrono = false;
-                    
-                } 
+                }
             });
             this.showLocalTime();
             this.notificationRequest();
-            this.setTheme()
+            this.setTheme();
         },
     };
 </script>
-<<<<<<< HEAD
-<style>
- 
-</style>
-=======
->>>>>>> dev
+<style></style>
