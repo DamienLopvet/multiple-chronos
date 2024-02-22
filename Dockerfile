@@ -11,6 +11,4 @@ RUN npm install --global @vue/cli
 
 COPY . /app
 
-EXPOSE 8080
-
-CMD ["npm","run", "serve"]
+ENTRYPOINT [ "npm"]

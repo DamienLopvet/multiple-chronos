@@ -49,7 +49,7 @@
                 <input type="submit" value="submit" />
             </form>
             <!-- <a href="#">I don't remember my pasword?</a> -->
-            <a href="" @click.prevent="handleSignup">Create an account</a>
+                    <a href="" @click.prevent="handleSignup" class="toggle-account">Create an account</a>
         </div>
         <div class="user-logout" v-if="isLogged">
             <p>you are connected</p>
@@ -113,7 +113,7 @@
                 </label>
                 <input type="submit" value="submit" />
             </form>
-            <a href="" @click.prevent="handleLogin"
+            <a href="" @click.prevent="handleLogin" class="toggle-account"
                 >Oh, never mind, I have an account !
             </a>
         </div>
@@ -366,6 +366,19 @@ You'll need to replace with your own color values.
             opacity: 1;
             transition: opacity $speed ease-in-out;
         }
+    }
+    .toggle-account {
+        all:unset;
+        margin-top: 16px;
+        display: block;
+        text-align: center;
+        font-size:22px;
+        cursor:pointer;
+        
+    }
+    .toggle-account:hover {
+        text-decoration: underline;
+        text-underline-offset:5px ;
     }
 
     @media screen and (-ms-high-contrast: active) {
