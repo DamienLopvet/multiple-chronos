@@ -11,5 +11,16 @@
     <h2>How to run locally</h2>
     <p>Download the repo and just run :</p>
     <code>docker compose up</code>
+    <h2>Additional features</h2>
+    <p>Additional features include:</p>
+    <ul>
+        <li>Stopwatch can be paused and reset</li>
+        <li>Stopwatch can be started and stopped</li>
+        <li>Multiple stopwatches can be created and run simultaneously</li>
+        //create an account and retreive your stop watches or un them unlogged on your browser
+        <li>    
+                
+        </li>
+    </ul>
 </body>
 </html>
