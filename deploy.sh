@@ -57,8 +57,11 @@ else
   echo "push to repo aborted";
 fi
 
-echo "end of script"
 
 #remove deployed image :
-
+echo "------------------------------removing deployed image------------------------------"
 docker rmi $(docker images 'multiple-chronos:deploy' -a -q)
+
+
+
+echo "------------------------------end of script------------------------------"
