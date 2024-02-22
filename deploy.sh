@@ -59,4 +59,6 @@ fi
 
 echo "end of script"
 
+#remove deployed image :
 
+docker rmi $(docker images 'multiple-chronos:deploy' -a -q)
